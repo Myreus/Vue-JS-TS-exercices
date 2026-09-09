@@ -28,6 +28,10 @@ const routes: RouteRecordRaw[] = [
         path: '/interpol',
         component: () => import('../views/ExTextInterpolation.vue'),
     },
+    {
+        path: '/profile',
+        component: () => import('../views/User.vue'),
+    },
 ];
 
 const router = createRouter({

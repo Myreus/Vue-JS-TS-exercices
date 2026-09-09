@@ -6,6 +6,7 @@
             <RouterLink to="/services" class="btn btn-ghost">Services</RouterLink>
             <RouterLink to="/contact" class="btn btn-ghost">Contact</RouterLink>
             <RouterLink to="/interpol" class="btn btn-ghost">Text Interpolation</RouterLink>
+            <RouterLink to="/profile" class="btn btn-ghost">Mon profil</RouterLink>
         </nav>
     </header>
 </template>
