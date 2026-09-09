@@ -6,27 +6,27 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/',
         alias: '/home',
-        component: () => import('../../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
     },
     {
         path: '/about',
         meta: {
             title: 'About',
         },
-        component: () => import('../../views/About.vue'),
+        component: () => import('../views/About.vue'),
     },
     {
         path: '/services',
         name: 'services',
-        component: () => import('../../views/Cookies.vue'),
+        component: () => import('../views/Cookies.vue'),
     },
     {
         path: '/contact',
-        component: () => import('../../views/Contact.vue'),
+        component: () => import('../views/Contact.vue'),
     },
     {
         path: '/interpol',
-        component: () => import('../../views/ExTextInterpolation.vue'),
+        component: () => import('../views/ExTextInterpolation.vue'),
     },
 ];
 
