@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css">
+    <title>Jefff303.js</title>
+</head>
+
+<body class="min-h-screen">
+    <div class="drawer min-h-screen">
+        <input id="drawer-toggle" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col min-h-screen">
+            <!-- Navbar -->
+            <div id="navbar-container"></div>
+            
+            <!-- Main Content -->
+            <main class="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                <!-- En-tête de la page équipe -->
+                <h1 class="text-4xl font-bold mb-4">Notre Équipe</h1>
+                <p class="text-lg text-base-content/70 max-w-2xl mx-auto mb-8">
+                    Découvrez les membres talentueux qui composent notre équipe et qui travaillent ensemble pour créer des expériences exceptionnelles.
+                </p>
+
+                <!-- Conteneur pour les contrôles et les cards de l'équipe -->
+                <div id="team-container">
+                    <!-- Les contrôles et cards seront générés automatiquement par JavaScript -->
+                    <div id="team-grid"></div>
+                    <!-- <div id="member-details-modal"></div> -->
+                </div>
+            </main>
+
+        <!-- Footer -->
+        <div id="footer-container"></div>
+
+        </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+
+    <!-- Script pour initialiser l'équipe -->
+    <script type="module">
+        import { renderTeam, addTeamControls } from '/src/services/teamUiService.js';
+
+        // Initialisation de la page équipe
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ajouter les contrôles de recherche et filtres
+            // addTeamControls('team-container');
+
+            // Rendre l'équipe dans le conteneur grid
+            renderTeam('team-grid');
+
+            // Animation d'entrée pour le titre
+            const title = document.querySelector('h1');
+            if (title) {
+                title.style.opacity = '0';
+                title.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    title.style.transition = 'all 0.6s ease-out';
+                    title.style.opacity = '1';
+                    title.style.transform = 'translateY(0)';
+                }, 200);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

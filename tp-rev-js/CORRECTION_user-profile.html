@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css">
+    <title>Variables JavaScript - Jefff303.js</title>
+</head>
+
+<body class="min-h-screen">
+    <div class="drawer min-h-screen">
+        <input id="drawer-toggle" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col min-h-screen">
+            <!-- Navbar -->
+            <div id="navbar-container"></div>
+
+
+            <!-- Main Content -->
+            <main class="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                <h1 class="text-4xl font-bold mb-4 text-center">TP : Profil Utilisateur Random</h1>
+                <div id="userCard" class="card card-compact bg-base-100 shadow-xl w-96 mx-auto">
+                </div>
+                <div class="flex justify-center mt-6">
+                    <button id="randomBtn" class="btn btn-primary">Utilisateur aléatoire</button>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module">
+        import dompurify from 'dompurify';
+        const userCard = document.getElementById('userCard');
+        const randomBtn = document.getElementById('randomBtn');
+
+        const renderUser = (user) => {
+            const {
+                name,
+                email,
+                location,
+                phone,
+                picture
+            } = user;
+
+            // Utilisation de template literals pour construire le HTML en une seule fois
+            const userCardHTML = `
+        <figure>
+            <img src="${picture.large}" alt="user profile" class="rounded-t-box" />
+        </figure>
+        <div class="card-body items-center text-center">
+            <h2 class="card-title text-2xl">${name.title}. ${name.first} ${name.last}</h2>
+            <p class="text-sm opacity-50">${email}</p>
+            <p class="mt-2">
+                Adresse : ${location.street.number} ${location.street.name}<br>
+                ${location.city}, ${location.country}
+            </p>
+            <p>Téléphone : ${phone}</p>
+        </div>
+    `;
+        // Intégreer DOMPurify 
+            userCard.innerHTML = dompurify.sanitize(userCardHTML);
+        };
+
+        const fetchRandomUser = async () => {
+            // Afficher un état de chargement
+            userCard.innerHTML = '<span class="loading loading-spinner text-primary mx-auto my-10"></span>';
+
+            try {
+                const response = await fetch('https://randomuser.me/api/');
+                if (!response.ok || response.status !== 200) {
+                    throw new Error('Erreur réseau, le statut est ' + response.status);
+                }
+                const data = await response.json();
+                console.log(data);
+                // Rendu du premier utilisateur
+                renderUser(data.results[0]);
+            } catch (error) {
+                console.error("Impossible de charger les données :", error);
+                userCard.innerHTML = '<p class="text-error p-4">Erreur : Impossible de charger le profil.</p>';
+            }
+        };
+
+        // Écouteur d'événement sur le bouton
+        randomBtn.addEventListener('click', fetchRandomUser);
+
+        // Appeler la fonction au chargement de la page pour afficher un utilisateur
+        fetchRandomUser();
+    </script>
+</body>
+
+</html>

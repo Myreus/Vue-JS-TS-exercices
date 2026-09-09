@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="fr" data-theme="corporate">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Un petit tableau de bord pour pratiquer JavaScript" />
+  <title>Daily Desk</title>
+</head>
+
+<body class="min-h-screen bg-base-200">
+  <div id="app" class="min-h-screen" data-page="daily-desk">
+    <header class="navbar border-b border-base-300 bg-base-100 px-4 shadow-sm sm:px-8" data-component="header">
+      <div class="flex-1">
+        <a class="btn btn-ghost text-xl" href="#accueil" aria-label="Retour à l'accueil">
+          <span class="text-primary" aria-hidden="true">✦</span>
+          <span>Daily Desk</span>
+        </a>
+      </div>
+
+      <nav class="hidden sm:block" aria-label="Navigation principale">
+        <ul class="menu menu-horizontal gap-1">
+          <li><a class="active" href="#accueil">Accueil</a></li>
+          <li><a href="#taches">Tâches</a></li>
+          <li><a href="#idees">Idées</a></li>
+        </ul>
+      </nav>
+
+      <div class="ml-2">
+        <button class="btn btn-circle btn-ghost" id="theme-button" type="button" aria-label="Changer le thème"
+          data-action="toggle-theme">
+          ◐
+        </button>
+      </div>
+    </header>
+
+    <main id="accueil" class="mx-auto flex w-full max-w-6xl flex-col gap-8 p-4 sm:p-8">
+      <section class="hero rounded-box bg-base-100 shadow-sm" aria-labelledby="page-title">
+        <div class="hero-content flex-col items-start justify-between gap-6 py-10 sm:flex-row sm:items-center">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-wide text-primary">Mardi 8 septembre 2026</p>
+            <h1 id="page-title" class="mt-2 text-4xl font-bold sm:text-5xl">
+              Une journée à organiser<span class="text-primary">.</span>
+            </h1>
+            <p class="mt-4 max-w-2xl text-base-content/70">
+              Un espace simple pour noter ce qui te passe par la tête et avancer tranquillement.
+            </p>
+          </div>
+          <div class="badge badge-lg gap-2 border-primary/20 bg-primary/10 py-4 text-primary" id="mood-badge"
+            data-mood="calme">
+            <span aria-hidden="true">☀</span>
+            <span>Humeur calme</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid gap-6 lg:grid-cols-[1.5fr_1fr]" aria-label="Tableau de bord">
+        <article class="card border border-base-300 bg-base-100 shadow-sm" id="taches" data-component="task-panel">
+          <div class="card-body">
+            <header class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold uppercase tracking-wide text-primary">À faire</p>
+                <h2 class="card-title mt-1">Petites victoires</h2>
+              </div>
+              <span class="badge badge-primary" id="task-counter" data-count="3">3</span>
+            </header>
+
+            <div class="divider my-1"></div>
+
+            <form class="join w-full" id="task-form" data-form="task">
+              <label class="sr-only" for="task-input">Ajouter une tâche</label>
+              <input class="input input-bordered join-item min-w-0 flex-1" id="task-input" name="task" type="text"
+                placeholder="Ajouter une tâche..." autocomplete="off" />
+              <button class="btn btn-primary join-item" type="submit" data-action="add-task">Ajouter</button>
+            </form>
+
+            <ul class="mt-4 space-y-2" id="task-list" aria-live="polite">
+              <li class="flex items-center justify-between gap-3 rounded-lg border border-base-300 p-3"
+                data-task-id="1">
+                <label class="flex min-w-0 cursor-pointer items-center gap-3">
+                  <input class="checkbox checkbox-primary" type="checkbox" />
+                  <span class="truncate">Préparer un bon café</span>
+                </label>
+                <button class="btn btn-circle btn-ghost btn-sm text-error" type="button" aria-label="Supprimer la tâche"
+                  data-action="delete-task">×</button>
+              </li>
+              <li class="flex items-center justify-between gap-3 rounded-lg border border-base-300 bg-base-200 p-3"
+                data-task-id="2">
+                <label class="flex min-w-0 cursor-pointer items-center gap-3">
+                  <input class="checkbox checkbox-primary" type="checkbox" checked />
+                  <span class="truncate line-through opacity-60">Regarder la météo</span>
+                </label>
+                <button class="btn btn-circle btn-ghost btn-sm text-error" type="button" aria-label="Supprimer la tâche"
+                  data-action="delete-task">×</button>
+              </li>
+              <li class="flex items-center justify-between gap-3 rounded-lg border border-base-300 p-3"
+                data-task-id="3">
+                <label class="flex min-w-0 cursor-pointer items-center gap-3">
+                  <input class="checkbox checkbox-primary" type="checkbox" />
+                  <span class="truncate">Trouver une idée géniale</span>
+                </label>
+                <button class="btn btn-circle btn-ghost btn-sm text-error" type="button" aria-label="Supprimer la tâche"
+                  data-action="delete-task">×</button>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <aside class="card bg-primary text-primary-content shadow-sm" id="idees" data-component="quote-panel">
+          <div class="card-body justify-between">
+            <div>
+              <span class="text-5xl opacity-60" aria-hidden="true">“</span>
+              <blockquote class="mt-2 text-2xl font-semibold" id="quote-text">
+                Les grandes idées commencent parfois par une très petite action.
+              </blockquote>
+              <p class="mt-4 opacity-80" id="quote-author">— Le tableau de bord</p>
+            </div>
+            <button
+              class="btn btn-outline mt-8 w-fit border-primary-content/50 text-primary-content hover:bg-primary-content hover:text-primary"
+              id="quote-button" type="button" data-action="random-quote">
+              Nouvelle pensée
+            </button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="card border border-base-300 bg-base-100 shadow-sm" aria-labelledby="note-title">
+        <div class="card-body">
+          <header class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-wide text-primary">Brouillon libre</p>
+              <h2 class="card-title mt-1" id="note-title">Le coin des idées</h2>
+            </div>
+            <span class="badge badge-ghost" id="character-count">0 caractère</span>
+          </header>
+
+          <label class="sr-only" for="note-input">Écrire une note</label>
+          <textarea class="textarea textarea-bordered mt-2 min-h-36 w-full" id="note-input" name="note" rows="5"
+            placeholder="Écris une idée, une envie, une recette..." data-input="note"></textarea>
+
+          <footer class="mt-2 flex flex-wrap items-center justify-between gap-4">
+            <span class="text-sm text-base-content/60" id="save-status" data-status="ready">Prêt à écrire</span>
+            <button class="btn btn-primary" id="save-button" type="button" data-action="save-note">
+              Enregistrer la note
+            </button>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="footer footer-center border-t border-base-300 bg-base-100 p-6 text-base-content/60 sm:flex sm:justify-between sm:px-8">
+      <p>Daily Desk <span aria-hidden="true">·</span> version tranquille</p>
+      <button class="btn btn-link btn-sm no-underline" id="reset-button" type="button" data-action="reset">
+        Réinitialiser
+      </button>
+    </footer>
+  </div>
+</body>
