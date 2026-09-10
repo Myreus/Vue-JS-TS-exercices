@@ -30,7 +30,19 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: '/profile',
-        component: () => import('../views/User.vue'),
+        component: () => import('../views/user.vue'),
+    },
+    {
+        path: '/counter',
+        component: () => import('../views/Counter.vue'),
+    },
+    {
+        path: '/colors',
+        component: () => import('../views/Colors.vue'),
+    },
+    {
+        path: '/movies',
+        component: () => import('../views/Movies.vue'),
     },
 ];
 

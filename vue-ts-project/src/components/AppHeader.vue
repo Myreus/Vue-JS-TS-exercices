@@ -7,6 +7,9 @@
             <RouterLink to="/contact" class="btn btn-ghost">Contact</RouterLink>
             <RouterLink to="/interpol" class="btn btn-ghost">Text Interpolation</RouterLink>
             <RouterLink to="/profile" class="btn btn-ghost">Mon profil</RouterLink>
+            <RouterLink to="/counter" class="btn btn-ghost">Compteur</RouterLink>
+            <RouterLink to="/colors" class="btn btn-ghost">Couleurs</RouterLink>
+            <RouterLink to="/movies" class="btn btn-ghost">Films</RouterLink>
         </nav>
     </header>
 </template>

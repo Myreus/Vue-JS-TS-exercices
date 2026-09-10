@@ -6,9 +6,10 @@
                 <div class="card-body items-center text-center">
                     <h1 class="card-title">Mes infos</h1>
                     <p class="w-full rounded-lg bg-base-200 p-3">Nom : {{ userName }}</p>
+                    <input type="text" :value="userName" class="w-full rounded-lg bg-white p-3 text-gray-900" />
                     <p class="w-full rounded-lg bg-base-200 p-3">Âge : {{ age }}</p>
-                    <p class="w-full rounded-lg bg-base-200 p-3">{{ ageTen() }}</p>
-                    <p class="w-full rounded-lg bg-base-200 p-3">Numéro fétiche : {{ Math.floor(Math.random() * 100) + 1 }}</p>
+                    <p class="w-full rounded-lg bg-base-200 p-3">Âge + 10 = {{ ageTen() }}</p>
+                    <p class="w-full rounded-lg bg-base-200 p-3">Numéro fétiche : {{ Math.floor(Math.random() * 100) }}</p>
                 </div>
             </div>
         </section>
