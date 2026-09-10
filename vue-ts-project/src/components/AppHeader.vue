@@ -10,6 +10,7 @@
             <RouterLink to="/counter" class="btn btn-ghost">Compteur</RouterLink>
             <RouterLink to="/colors" class="btn btn-ghost">Couleurs</RouterLink>
             <RouterLink to="/movies" class="btn btn-ghost">Films</RouterLink>
+            <RouterLink to="/api" class="btn btn-ghost">API</RouterLink>
         </nav>
     </header>
 </template>

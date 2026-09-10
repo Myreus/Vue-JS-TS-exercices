@@ -44,6 +44,10 @@ const routes: RouteRecordRaw[] = [
         path: '/movies',
         component: () => import('../views/Movies.vue'),
     },
+    {
+        path: '/api',
+        component: () => import('../views/Api.vue'),
+    },
 ];
 
 const router = createRouter({
